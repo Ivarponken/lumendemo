@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 
 class ColorController extends Controller
 {
-    function show()
+    function show(Request $request)
     {
-        return View::make('farger');
+        $background = $request->get('back');
+        $text = $request->get('front');
+        return View::make('farger', ['backColor' => $background, 'textColor' => $text]);
     }
 
     function post(Request $request)
@@ -19,4 +21,11 @@ class ColorController extends Controller
         $text = $request->request->get('textColor');
         return View::make('farger', ['backColor' => $background, 'textColor' => $text]);
     }
+    function withParams(Request $request)
+    {
+        $background = $request->route('back');
+        $text = $request->route('front');
+        return View::make('farger', ['backColor' => $background, 'textColor' => $text]);
+    }
 }
+
