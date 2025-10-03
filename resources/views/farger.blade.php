@@ -19,7 +19,7 @@
 
 <body>
     <h1>Välj Färger</h1>
-    <form method="POST">
+    <form method="POST" action="/farger">
         Välj textfärg: <input name="textColor" value="{{ $textColor ?? '' }}"><br>
         Välj bakgrundsfärg: <input name="backColor" value="{{ $backColor ?? '' }}"><br>
         <input type="submit" value="Skicka">
