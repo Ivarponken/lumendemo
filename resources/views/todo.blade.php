@@ -20,7 +20,15 @@
         <h2>Uppgifter</h2>
         <ul>
             @foreach ($lista as $uppgift)
-                <li>{{ $uppgift }}</li>
+                <li>
+                    <form method="post">
+                        <input type="hidden" name="lista" value="{{json_encode($lista)}}">
+                        {{ $uppgift }}
+                        <input type="hidden" name="uppgift" value="{{ $uppgift }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="Ta bort">
+                    </form>
+                </li>
             @endforeach
         </ul>
     @endif
