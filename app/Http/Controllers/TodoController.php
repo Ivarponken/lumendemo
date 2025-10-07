@@ -26,17 +26,16 @@ class TodoController extends Controller
         $uppgift = Uppgift::factory()->make(['text' => $text, 'done' => false]);
 
         $this->repo->add($uppgift);
-        $lista = $this->repo->all();
 
-        return View::make('todo', ['lista' => $lista]);
+        return redirect('/ToDo');
     }
 
     function remove(Request $request)
     {
         $id = $request->request->get('uppgift');
         $this->repo->delete($id);
-        $lista = $this->repo->all();
-        return View::make('todo', ['lista' => $lista]);
+        return redirect('/ToDo');
+
 
     }
 
@@ -47,7 +46,7 @@ class TodoController extends Controller
         $uppgift->done = !$uppgift->done;
 
         $this->repo->update($uppgift);
-        $lista = $this->repo->all();
-        return View::make('todo', ['lista' => $lista]);
+        return redirect('/ToDo');
+
     }
 }
