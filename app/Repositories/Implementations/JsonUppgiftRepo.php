@@ -4,20 +4,21 @@ namespace App\Repositories\Implementations;
 
 use App\Models\Uppgift;
 use App\Repositories\Interfaces\UppgiftRepo;
+use App\Storage\JsonDbConnection;
+use App\Storage\JsonFileHandler;
 
 class JsonUppgiftRepo implements UppgiftRepo
 {
     private array $lista = [];
-    private string $path = __DIR__ . '/../../../storage/app/uppgifter.json';
-    public function __construct()
+    private $path;
+    public function __construct(JsonDbConnection $dbConnection)
     {
-        if (!file_exists($this->path)) {
-            return;
-        }
-        $content = file_get_contents($this->path);
-        $json = json_decode($content, true) ?? [];
+        $this->path = new JsonFileHandler('uppgifter', $dbConnection);
 
-        foreach ($json as $item) {
+
+        $content = $this->path->read();
+
+        foreach ($content as $item) {
             $this->lista[$item['id']] = new Uppgift($item);
         }
     }
@@ -37,7 +38,7 @@ class JsonUppgiftRepo implements UppgiftRepo
             $uppgift->id = $nextId;
         }
         $this->lista[$uppgift->id] = $uppgift;
-        file_put_contents($this->path, json_encode($this->lista));
+        $this->path->write($this->lista);
     }
     public function update(Uppgift $uppgift): void
     {
@@ -46,6 +47,6 @@ class JsonUppgiftRepo implements UppgiftRepo
     public function delete(string $id): void
     {
         unset($this->lista[$id]);
-        file_put_contents($this->path, json_encode($this->lista));
+        $this->path->write($this->lista);
     }
 }
