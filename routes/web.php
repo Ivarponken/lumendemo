@@ -28,6 +28,9 @@ $router->post('/todo', "TodoController@add");
 $router->delete('/todo', "TodoController@remove");
 $router->put('/todo', "TodoController@update");
 
+// Användare
+$router->get('/anvandare', 'UserController@show');
+$router->post('/anvandare', 'UserController@add');
 
 $router->get('/{id}', function ($id) use ($router) {
     $reserved = ['todo', 'farger'];
