@@ -16,11 +16,17 @@
 <body>
     <h1>Användare</h1>
     <form method="post">
+        @if (isset($user))
+            <input type="hidden" name="id" value="{{ $user->id }}">
+        @endif
         <label> Namn: <input name="namn" required placeholder="Ange namn" value="{{ $user->namn ?? '' }}"></label>
         <label>Epost: <input type="email" name="epost" required placeholder="Ange epost"
                 value="{{ $user->epost ?? '' }}"></label>
         <input type="submit" value="Spara">
         <input type="reset" value="Ångra">
+        @if(isset($user))
+            <input type="submit" name="delete" value="Ta bort">
+        @endif
     </form>
 
     @if (!empty($lista))

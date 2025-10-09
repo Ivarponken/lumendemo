@@ -31,6 +31,9 @@ $router->put('/todo', "TodoController@update");
 // Användare
 $router->get('/anvandare', 'UserController@show');
 $router->post('/anvandare', 'UserController@add');
+$router->get('/anvandare/{id}', 'UserController@showUser');
+$router->post('/anvandare/{id}', 'UserController@modifyUser');
+
 
 $router->get('/{id}', function ($id) use ($router) {
     $reserved = ['todo', 'farger'];
