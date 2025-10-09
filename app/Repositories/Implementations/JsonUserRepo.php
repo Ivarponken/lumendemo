@@ -35,7 +35,7 @@ class JsonUserRepo implements UserRepo
     public function add(User $user): void
     {
         if ($user->id === 0) {
-            $id = array_keys($this->data);
+            $ids = array_keys($this->data);
             $nextId = empty($ids) ? 1 : max($ids) + 1;
             $user->id = $nextId;
         }
