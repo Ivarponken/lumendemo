@@ -34,6 +34,11 @@ $router->post('/anvandare', 'UserController@add');
 $router->get('/anvandare/{id}', 'UserController@showUser');
 $router->post('/anvandare/{id}', 'UserController@modifyUser');
 
+// Inloggning
+$router->get('/login', 'LoginController@show');
+$router->post('/login', 'LoginController@login');
+
+
 
 $router->get('/{id}', function ($id) use ($router) {
     $reserved = ['todo', 'farger'];

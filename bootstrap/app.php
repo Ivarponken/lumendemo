@@ -61,6 +61,7 @@ $app->singleton(
 
 $app->configure('app');
 $app->configure('view');
+$app->configure('session');
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +74,10 @@ $app->configure('view');
 |
 */
 
-$app->middleware([App\Http\Middleware\LowerCaseUrls::class]);
+$app->middleware([
+    App\Http\Middleware\LowerCaseUrls::class,
+    Illuminate\Session\Middleware\StartSession::class
+]);
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);

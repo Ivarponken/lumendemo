@@ -38,4 +38,8 @@ interface UserRepo
      *
      */
     public function delete(string $id): void;
+
+
+
+    public function getUserByEmail(string $email): ?User;
 }
