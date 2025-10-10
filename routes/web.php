@@ -22,18 +22,19 @@ $router->get('/farger', "ColorController@show");
 $router->get('/farger/{back}[/{front}]', "ColorController@withParams");
 $router->post('/farger', "ColorController@post");
 
-// Todo!!!!!!!!
+// todo!
 $router->get('/todo', "TodoController@show");
 $router->post('/todo', "TodoController@add");
 $router->delete('/todo', "TodoController@remove");
 $router->put('/todo', "TodoController@update");
 
 // Användare
-$router->get('/anvandare', 'UserController@show');
-$router->post('/anvandare', 'UserController@add');
-$router->get('/anvandare/{id}', 'UserController@showUser');
-$router->post('/anvandare/{id}', 'UserController@modifyUser');
-
+$router->group(['middleware' => 'auth.user'], function () use ($router) {
+    $router->get('/anvandare', 'UserController@show');
+    $router->post('/anvandare', 'UserController@add');
+    $router->get('/anvandare/{id}', 'UserController@showUser');
+    $router->post('/anvandare/{id}', 'UserController@modifyUser');
+});
 // Inloggning
 $router->get('/login', 'LoginController@show');
 $router->post('/login', 'LoginController@login');
