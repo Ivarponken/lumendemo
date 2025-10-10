@@ -15,10 +15,14 @@ class UserController extends Controller
     {
 
     }
-    function show()
+    function show(Request $request)
     {
         $lista = $this->repo->all();
-        return View::make('user', ['lista' => $lista]);
+
+        // hämta inloggad användare
+        $me = $request->user();
+        return View::make('user', ['lista' => $lista, 'me' => $me]);
+
     }
     public function showUser(Request $request)
     {
