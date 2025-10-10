@@ -24,7 +24,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'id',
         'namn',
         'epost',
-        'losenord'
+        'losenord',
+        'admin',
     ];
 
     /**
