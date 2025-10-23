@@ -10,7 +10,7 @@ class Uppgift extends Model
     use HasFactory;
 
     protected $fillable = ['id', 'text', 'done'];
-
+    protected $table = 'todos';
     protected $primaryKey = 'id';
     public $incrementing = true;
     protected $keyType = 'integer';
