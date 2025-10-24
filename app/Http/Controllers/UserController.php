@@ -55,7 +55,7 @@ class UserController extends Controller
         $me = $request->user();
 
         $id = $request->route('id');
-        if ($request->request->get('delete') && ($id == $me->id || $me->admin)) {
+        if ($request->request->get('delete') && ($id == $me->id || !$me->admin)) {
             return View::make('ajabaja');
         }
         if ($id !== $request->request->get('id')) {

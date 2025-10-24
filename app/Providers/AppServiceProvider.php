@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Repositories\Implementations\DbUppgiftRepo;
+use App\Repositories\Implementations\DbUserRepo;
 use App\Repositories\Implementations\JsonUppgiftRepo;
 use App\Repositories\Implementations\JsonUserRepo;
 use App\Repositories\Interfaces\UppgiftRepo;
 use App\Repositories\Interfaces\UserRepo;
+use Database\Seeders\UserSeeder;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // $this->app->bind(UppgiftRepo::class, JsonUppgiftRepo::class);
         $this->app->bind(UppgiftRepo::class, DbUppgiftRepo::class);
-        $this->app->bind(UserRepo::class, JsonUserRepo::class);
+        $this->app->bind(UserRepo::class, DbUserRepo::class);
+        // $this->app->bind(UserRepo::class, JsonUserRepo::class);
     }
 }
